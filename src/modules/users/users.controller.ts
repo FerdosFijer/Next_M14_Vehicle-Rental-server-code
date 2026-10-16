@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import { userServices } from "./users.service";
 
 const createUser = async(req: Request, res:Response)=>{
-  const{ name, email, phone, role}= req.body
   try {
-    const result = await userServices.createUser(name, email, phone, role);
+    const result = await userServices.createUser(req.body);
     res.status(201).json({ success: true, message: "Data inserted successfully", data: result.rows[0] });
   } catch (err:any) {
     res.status(500).json({success: false, message: err.message})
@@ -32,9 +31,8 @@ const getSingleUser = async (req: Request, res: Response) => {
   }
 }
 const updateUser = async (req: Request, res: Response) => {
-  const {name, email, phone, role} = req.body;
   try{
-    const result = await userServices.updateUser(name,email,phone,role, req.params.id as string);
+    const result = await userServices.updateUser(req.body, req.params.id as string);
     if(result.rows.length === 0){
       res.status(404).json({success:false, message: "user not found"})
     }else{
