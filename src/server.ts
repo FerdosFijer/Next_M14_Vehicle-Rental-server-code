@@ -5,6 +5,7 @@ import logger from "./middleware/logger";
 import { userRoutes } from "./modules/users/users.routes";
 import { vehicleRouter } from "./modules/vehicles/vehicles.routes";
 import { bookingRouter } from "./modules/bookings/bookings.routes";
+import { authRoutes } from "./modules/auth/auth.routes";
 
 const app = express();
 const port = config.port;
@@ -25,6 +26,9 @@ app.use("/vehicles", vehicleRouter)
 
 //Bookings
 app.use('/bookings', bookingRouter)
+
+//auth routes
+app.use("/auth", authRoutes)
 
 //not found
 app.use((req, res)=>{
