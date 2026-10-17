@@ -6,7 +6,7 @@ import auth from "../../middleware/auth";
 const router= express.Router()
 
 router.post('/', userController.createUser);
-router.get('/',logger, auth("admin","customer"), userController.getUser);
+router.get('/',logger, auth("admin"), userController.getUser);
 router.get('/:id', userController.getSingleUser);
 router.put('/:id', userController.updateUser);
 router.delete('/:id', userController.deleteUser);
