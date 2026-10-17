@@ -20,7 +20,7 @@ const getVehicle =  async(req: Request, res: Response) =>{
 }
 const getSingleVehicle = async(req: Request, res: Response)=>{
   try {
-    const result = await vehicleServices.getSingleVehicle(req.params.id as string);
+    const result = await vehicleServices.getSingleVehicle(req.params.vehicleId as string);
     if(result.rows.length === 0){
       res.status(404).json({success:false, message: "vehicle not found"})
     }else{
@@ -33,7 +33,7 @@ const getSingleVehicle = async(req: Request, res: Response)=>{
 const updateVehicle = async (req:Request, res: Response)=> {
   const{ vehicle_name, type, registration_number, daily_rent_price, availability_status}= req.body
   try {
-    const result = await vehicleServices.updateVehicle(vehicle_name, type, registration_number, daily_rent_price, availability_status,req.params.id as string);
+    const result = await vehicleServices.updateVehicle(vehicle_name, type, registration_number, daily_rent_price, availability_status,req.params.vehicleId as string);
     if(result.rows.length === 0){
       res.status(404).json({success:false, message: "vehicle not found"}) 
     }else{
@@ -45,7 +45,7 @@ const updateVehicle = async (req:Request, res: Response)=> {
 }
 const deleteVehicle = async (req:Request, res:Response)=>{
   try {
-    const result = await vehicleServices.deleteVehicle( req.params.id as string);
+    const result = await vehicleServices.deleteVehicle( req.params.vehicleId as string);
     if(result.rowCount === 0){
       res.status(404).json({success:false, message: "vehicle not found"})
     }else{

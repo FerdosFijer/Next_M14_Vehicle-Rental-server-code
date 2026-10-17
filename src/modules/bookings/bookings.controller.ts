@@ -19,7 +19,7 @@ const getBooking = async(req: Request, res:Response)=> {
 }
 const getSingleBooking = async(req: Request, res: Response)=>{
   try {
-    const result = await bookingService.getSingleBooking(req.params.id as string);
+    const result = await bookingService.getSingleBooking(req.params.bookingId as string);
     if(result.rows.length === 0){
       res.status(404).json({success:false, message: "Booking not found"})
     }else{
@@ -32,7 +32,7 @@ const getSingleBooking = async(req: Request, res: Response)=>{
 const updateBooking = async (req:Request, res: Response)=> {
  
   try {
-    const result = await bookingService.updateBooking(req.body, req.params.id as string);
+    const result = await bookingService.updateBooking(req.body, req.params.bookingId as string);
     if(result.rows.length === 0){
       res.status(404).json({success:false, message: "Booking not found"}) 
     }else{
@@ -44,7 +44,7 @@ const updateBooking = async (req:Request, res: Response)=> {
 }
 const deleteBooking = async (req:Request, res:Response)=>{
   try {
-    const result = await bookingService.deleteBooking(req.params.id as string);
+    const result = await bookingService.deleteBooking(req.params.bookingId as string);
     if(result.rowCount === 0){
       res.status(404).json({success:false, message: "Booking not found"})
     }else{
