@@ -7,7 +7,7 @@ export const pool = new Pool ({
 
 const initDB = async() =>{
   await pool.query(`CREATE TABLE IF NOT EXISTS users(
-    userId SERIAL PRIMARY KEY,
+    userid SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL CHECK (email = LOWER(email)),
     password TEXT NOT NULL, 
@@ -15,7 +15,7 @@ const initDB = async() =>{
     role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'customer'))
     )`)
   await pool.query(`CREATE TABLE IF NOT EXISTS vehicles(
-    vehicleId SERIAL PRIMARY KEY,
+    vehicleid SERIAL PRIMARY KEY,
     vehicle_name VARCHAR(100) NOT NULL,
     type VARCHAR(20) NOT NULL CHECK (type IN ('car', 'bike', 'van', 'SUV')),
     registration_number VARCHAR(50) UNIQUE NOT NULL ,
@@ -24,8 +24,8 @@ const initDB = async() =>{
     )`)
   await pool.query(`CREATE TABLE IF NOT EXISTS bookings(
     bookingId SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(userId) ON DELETE CASCADE,
-    vehicle_id INT REFERENCES vehicles(vehicleId) ON DELETE CASCADE,
+    user_id INT REFERENCES users(userid) ON DELETE CASCADE,
+    vehicle_id INT REFERENCES vehicles(vehicleid) ON DELETE CASCADE,
     rent_start_date DATE NOT NULL,
     rent_end_date DATE NOT NULL CHECK (rent_end_date > rent_start_date),
     total_price NUMERIC(10,2) NOT NULL CHECK (total_price > 0),
