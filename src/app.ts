@@ -16,6 +16,7 @@ app.get('/', logger, (req: Request, res:Response) => {
   res.send('Hello World!');
 });
 // users
+app.use("/api/v1", userRoutes)
 app.use("/api/v1/users", userRoutes)
 
 //vehicles
