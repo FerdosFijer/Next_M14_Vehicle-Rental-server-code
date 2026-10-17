@@ -9,8 +9,8 @@ const auth = (...roles: string[]) => {
             if (!token) {
                 return res.status(500).json({ message: "You are not allowed" })
             }
-            const decoded = jwt.verify(token, config.jwtSecret as string) as JwtPayload; //! decoded etar type hosse jwtPayload 
-            req.user = decoded ; //! index.d.ts banabo tahole req.user k pabo and decode korbo
+            const decoded = jwt.verify(token, config.jwtSecret as string) as JwtPayload; 
+            req.user = decoded ; 
 
             //["admin"]
             if(roles.length && !roles.includes(decoded.role as string)){

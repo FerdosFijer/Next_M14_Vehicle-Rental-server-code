@@ -16,16 +16,16 @@ app.get('/', logger, (req: Request, res:Response) => {
   res.send('Hello World!');
 });
 // users
-app.use("/users", userRoutes)
+app.use("/api/v1/users", userRoutes)
 
 //vehicles
-app.use("/vehicles", vehicleRouter)
+app.use("/api/v1/vehicles", vehicleRouter)
 
 //Bookings
-app.use('/bookings', bookingRouter)
+app.use('/api/v1/bookings', bookingRouter)
 
 //auth routes
-app.use("/auth", authRoutes)
+app.use("/api/v1/auth", authRoutes)
 
 //not found
 app.use((req, res)=>{

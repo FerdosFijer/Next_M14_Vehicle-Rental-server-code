@@ -3,10 +3,10 @@ import { bookingController } from "./bookings.controller";
 
 const router = express.Router();
 
-router.post('/', bookingController.createBooking);
-router.get('/', bookingController.getBooking);
-router.get('/:id', bookingController.getSingleBooking);
-router.put('./:id', bookingController.updateBooking);
-router.delete('./:id', bookingController.deleteBooking)
+router.post('/bookings', bookingController.createBooking);
+router.get('/bookings', bookingController.getBooking);
+router.get('/bookings/:bookingId', bookingController.getSingleBooking);
+router.put('/bookings/:bookingId', bookingController.updateBooking);
+router.delete('/bookings/:bookingId', bookingController.deleteBooking)
 
 export const bookingRouter = router;
