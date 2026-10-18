@@ -12,12 +12,12 @@ const getUser = async () => {
     return result;
 }
 const getSingleUser = async (id: string) =>{
-    const result= await pool.query(`SELECT * FROM users WHERE user_id = $1`,[id]);
+    const result= await pool.query(`SELECT * FROM users WHERE id = $1`,[id]);
     return result;
 }
 const updateUser = async (payload:Record<string, unknown>, id:string) =>{
     const {name, email, phone, role} = payload;
-    const result= await pool.query(`UPDATE users SET name=$1, email = $2, phone= $3, role=$4 WHERE user_id = $5 RETURNING *`, [name, email, phone, role, id]);
+    const result= await pool.query(`UPDATE users SET name=$1, email = $2, phone= $3, role=$4 WHERE id = $5 RETURNING *`, [name, email, phone, role, id]);
     return result;
 }
 const deleteUser = async (id: string) =>{
